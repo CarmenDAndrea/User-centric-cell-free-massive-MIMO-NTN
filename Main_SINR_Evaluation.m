@@ -39,7 +39,7 @@ Pt_SAT_dBW=15; %total power budget on the satellites
 
 N_UC=3; %values for the number of satellites serving each user
 
-Num_Deployments=600;%600; %number of deployments for the Starlink constellation
+Num_Deployments=10; %number of deployments for the Starlink constellation
 
 index_UT_interest=1; %UT for which the performance is evaluated
 
@@ -72,31 +72,14 @@ SINR_OFDM_per_user_symbol=cell(Num_Deployments,numChIt,N*M);
 
 for ch=0:Num_Deployments-1
     %% Channel Generation (load from dati_starlink)
-    if (ch>=0 && ch<=9)
-        load([data_path,'SlantRange_000',num2str(ch)]);
-        load([data_path,'Latency_000',num2str(ch)]);
-        load([data_path,'DoppShift_000',num2str(ch)]);
-        load([data_path,'elevationSAT_000',num2str(ch)]); %angle at which UTs see the satellites
-        load([data_path,'elevationUT_000',num2str(ch)]); %angle at which satellites see the UTs
-        load([data_path,'azimuthSAT_000',num2str(ch)]); %angle at which UTs see the satellites
-        load([data_path,'azimuthUT_000',num2str(ch)]); %angle at which satellites see the UTs
-    elseif (ch>=10 && ch<=99)
-        load([data_path,'SlantRange_00',num2str(ch)]);
-        load([data_path,'Latency_00',num2str(ch)]);
-        load([data_path,'DoppShift_00',num2str(ch)]);
-        load([data_path,'elevationSAT_00',num2str(ch)]);
-        load([data_path,'elevationUT_00',num2str(ch)]);
-        load([data_path,'azimuthSAT_00',num2str(ch)]);
-        load([data_path,'azimuthUT_00',num2str(ch)]);
-    elseif (ch>=100 && ch<=999)
-        load([data_path,'SlantRange_0',num2str(ch)]);
-        load([data_path,'Latency_0',num2str(ch)]);
-        load([data_path,'DoppShift_0',num2str(ch)]);
-        load([data_path,'elevationSAT_0',num2str(ch)]);
-        load([data_path,'elevationUT_0',num2str(ch)]);
-        load([data_path,'azimuthSAT_0',num2str(ch)]);
-        load([data_path,'azimuthUT_0',num2str(ch)]);
-    end
+    load([data_path,'SlantRange_000',num2str(ch)]);
+    load([data_path,'Latency_000',num2str(ch)]);
+    load([data_path,'DoppShift_000',num2str(ch)]);
+    load([data_path,'elevationSAT_000',num2str(ch)]); %angle at which UTs see the satellites
+    load([data_path,'elevationUT_000',num2str(ch)]); %angle at which satellites see the UTs
+    load([data_path,'azimuthSAT_000',num2str(ch)]); %angle at which UTs see the satellites
+    load([data_path,'azimuthUT_000',num2str(ch)]); %angle at which satellites see the UTs
+
     Num_Total_satellites=size(srSATUT,1); %number of total satellites in the constellation
 
     % Generation of p681 LMS Channel
